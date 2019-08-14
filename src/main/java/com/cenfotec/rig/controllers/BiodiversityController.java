@@ -68,17 +68,20 @@ public class BiodiversityController {
 		return finalList;
 	}
 
-	@GetMapping(path = "/{name}")
+	@GetMapping(path = "/name/{name}")
 	public List<Biodiversity> animalName(@PathVariable String name) {
 
 		List<Biodiversity> bioBD = null;
 		List<Biodiversity> finalList = new ArrayList<Biodiversity>();
 
 		bioBD = repository.findAll();
+		
+		String nameL = name.toLowerCase();
 
 		for (Biodiversity bd : bioBD) {
 			if (bd.getMain_name().contains(name) || bd.getCommon_name().contains(name)
-					|| bd.getPopular_name().contains(name)) {
+					|| bd.getPopular_name().contains(name) || bd.getMain_name().contains(nameL) || bd.getCommon_name().contains(nameL)
+					|| bd.getPopular_name().contains(nameL)) {
 				finalList.add(bd);
 			}
 		}

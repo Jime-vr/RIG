@@ -44,9 +44,10 @@ public class PoliticalDivisionController {
 
 		bioBD = repository.findAll();
 		
+		String nameL = name.toLowerCase();
 
 		for (PoliticalDivision bd : bioBD) {
-			if (bd.getRegion_name().contains(name)) {
+			if (bd.getRegion_name().contains(name) || bd.getRegion_name().contains(nameL)) {
 				finalList.add(bd);
 			}
 		}

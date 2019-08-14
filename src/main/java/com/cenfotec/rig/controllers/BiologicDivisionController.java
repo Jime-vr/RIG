@@ -44,9 +44,11 @@ public class BiologicDivisionController {
 		List<BiologicDivision> finalList = new ArrayList<BiologicDivision>();
 
 		bioBD = repository.findAll();
+		
+		String nameL = name.toLowerCase();
 
 		for (BiologicDivision bd : bioBD) {
-			if (bd.getBregion_name().contains(name) ) {
+			if (bd.getBregion_name().contains(name) || bd.getBregion_name().contains(nameL) ) {
 				finalList.add(bd);
 			}
 		}

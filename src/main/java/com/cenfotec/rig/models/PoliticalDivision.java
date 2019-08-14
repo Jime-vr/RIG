@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @Entity
 public class PoliticalDivision {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_region;
 	private int id_country;
 	private String region_name;

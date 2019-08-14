@@ -13,10 +13,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class Flora {
+public class Biodiversity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_flora;
+	private int id_biodiversity;
 	private int id_country;
-	private String name;
+	private String bio_type;
+	private String main_name;
+	private String popular_name;
+	private String common_name;
+	private String population;
+	private String conservation;
 }

@@ -1,5 +1,6 @@
 package com.cenfotec.rig.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cenfotec.rig.models.BiologicDivision;
+
 import com.cenfotec.rig.repository.BiologicDivisionRepository;
 
 @RestController
@@ -33,6 +35,38 @@ public class BiologicDivisionController {
 	public ResponseEntity<BiologicDivision> findById(@PathVariable int id) {
 		return repository.findById(id).map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	@GetMapping(path = "/name/{name}")
+	public List<BiologicDivision> biologicalName(@PathVariable String name) {
+
+		List<BiologicDivision> bioBD = null;
+		List<BiologicDivision> finalList = new ArrayList<BiologicDivision>();
+
+		bioBD = repository.findAll();
+
+		for (BiologicDivision bd : bioBD) {
+			if (bd.getBregion_name().contains(name) ) {
+				finalList.add(bd);
+			}
+		}
+		return finalList;
+	}
+	
+	@GetMapping(path = "/country/{id}")
+	public List<BiologicDivision> politicalCountry(@PathVariable Integer id) {
+
+		List<BiologicDivision> bioBD = null;
+		List<BiologicDivision> finalList = new ArrayList<BiologicDivision>();
+
+		bioBD = repository.findAll();
+
+		for (BiologicDivision bd : bioBD) {
+			if (bd.getId_country() == id) {
+				finalList.add(bd);
+			}
+		}
+		return finalList;
 	}
 	
 	@PostMapping

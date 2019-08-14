@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cenfotec.rig.models.Country;
 import com.cenfotec.rig.repository.CountryRepository;
 
+
 @RestController
 @RequestMapping({ "/country" })
 public class CountryController {
 
 	private CountryRepository repository;
+
 
 	CountryController(CountryRepository repository) {
 		this.repository = repository;
@@ -34,6 +36,7 @@ public class CountryController {
 		return repository.findById(id).map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}
+	
 	
 	@PostMapping
 	public Country create(@RequestBody Country country) {

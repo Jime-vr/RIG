@@ -1,5 +1,6 @@
 package com.cenfotec.rig.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,6 +35,40 @@ public class PoliticalDivisionController {
 		return repository.findById(id).map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}
+	
+	@GetMapping(path = "/name/{name}")
+	public List<PoliticalDivision> politicalName(@PathVariable String name) {
+
+		List<PoliticalDivision> bioBD = null;
+		List<PoliticalDivision> finalList = new ArrayList<PoliticalDivision>();
+
+		bioBD = repository.findAll();
+		
+
+		for (PoliticalDivision bd : bioBD) {
+			if (bd.getRegion_name().contains(name)) {
+				finalList.add(bd);
+			}
+		}
+		return finalList;
+	}
+	
+	@GetMapping(path = "/country/{id}")
+	public List<PoliticalDivision> politicalCountry(@PathVariable Integer id) {
+
+		List<PoliticalDivision> bioBD = null;
+		List<PoliticalDivision> finalList = new ArrayList<PoliticalDivision>();
+
+		bioBD = repository.findAll();
+
+		for (PoliticalDivision bd : bioBD) {
+			if (bd.getId_country() == id) {
+				finalList.add(bd);
+			}
+		}
+		return finalList;
+	}
+	
 	
 	@PostMapping
 	public PoliticalDivision create(@RequestBody PoliticalDivision political) {

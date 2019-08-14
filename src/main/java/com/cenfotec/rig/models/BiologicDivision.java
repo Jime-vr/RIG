@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @Entity
 public class BiologicDivision {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_biologic;
 	private int id_country;
 	private int id_political_division;
